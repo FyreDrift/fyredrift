@@ -15,99 +15,334 @@
   --text:#f4f4f7;
   --muted:#a3a3ad;
 }
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{
-  margin:0;background:var(--bg);color:var(--text);
+
+* { box-sizing:border-box; }
+
+html { scroll-behavior:smooth; }
+
+body {
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
   font-family:Inter,system-ui,Arial,sans-serif;
 }
-nav{
-  position:fixed;top:0;left:0;right:0;z-index:10;
-  display:flex;justify-content:space-between;align-items:center;
-  padding:14px 7%;background:#09090ce8;
-  border-bottom:1px solid #ffffff12;backdrop-filter:blur(15px);
+
+nav {
+  position:fixed;
+  top:0;
+  left:0;
+  right:0;
+  z-index:10;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:14px 7%;
+  background:#09090ce8;
+  border-bottom:1px solid #ffffff12;
+  backdrop-filter:blur(15px);
 }
-.brand{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:1px}
-.brand img{width:43px;height:43px;object-fit:contain;border-radius:9px}
-.brand span span{color:var(--red)}
-nav a{color:var(--muted);text-decoration:none;margin-left:22px;font-size:14px}
-nav a:hover{color:white}
-button{cursor:pointer;font:inherit}
-.edit-button{
-  position:fixed;top:15px;left:15px;z-index:20;
-  background:var(--red);color:white;border:0;
-  padding:10px 16px;border-radius:9px;font-weight:700;
+
+.brand {
+  display:flex;
+  align-items:center;
+  gap:12px;
+  font-weight:900;
+  letter-spacing:1px;
 }
-.hero{
-  min-height:95vh;display:flex;align-items:center;
-  padding:130px 10% 80px;position:relative;overflow:hidden;
+
+.brand img {
+  width:43px;
+  height:43px;
+  object-fit:contain;
+  border-radius:9px;
 }
-.hero:before{
-  content:"";position:absolute;width:500px;height:500px;
-  background:#ff34341c;filter:blur(100px);border-radius:50%;
-  right:-100px;top:100px;
+
+.brand span span { color:var(--red); }
+
+nav a {
+  color:var(--muted);
+  text-decoration:none;
+  margin-left:22px;
+  font-size:14px;
 }
-.hero-content{position:relative;max-width:850px}
-.hero-logo{
-  width:105px;height:105px;object-fit:contain;
-  border-radius:20px;margin-bottom:25px;
+
+nav a:hover { color:white; }
+
+button {
+  cursor:pointer;
+  font:inherit;
+}
+
+.edit-button {
+  position:fixed;
+  top:15px;
+  left:15px;
+  z-index:20;
+  background:var(--red);
+  color:white;
+  border:0;
+  padding:10px 16px;
+  border-radius:9px;
+  font-weight:700;
+}
+
+.hero {
+  min-height:95vh;
+  display:flex;
+  align-items:center;
+  padding:130px 10% 80px;
+  position:relative;
+  overflow:hidden;
+}
+
+.hero:before {
+  content:"";
+  position:absolute;
+  width:500px;
+  height:500px;
+  background:#ff34341c;
+  filter:blur(100px);
+  border-radius:50%;
+  right:-100px;
+  top:100px;
+}
+
+.hero-content {
+  position:relative;
+  max-width:850px;
+}
+
+.hero-logo {
+  width:105px;
+  height:105px;
+  object-fit:contain;
+  border-radius:20px;
+  margin-bottom:25px;
   filter:drop-shadow(0 0 25px #ff424b35);
 }
-.eyebrow{color:var(--red);font-size:13px;font-weight:800;letter-spacing:4px}
-h1{font-size:clamp(48px,8vw,94px);line-height:1.02;margin:22px 0}
-h1 span{color:var(--red)}
-.hero p,.section-intro{color:var(--muted);font-size:18px;line-height:1.8;max-width:650px}
-.primary{
-  display:inline-block;background:var(--red);color:white;
-  padding:14px 23px;border-radius:8px;text-decoration:none;
-  font-weight:750;margin-top:20px;border:0;
+
+.eyebrow {
+  color:var(--red);
+  font-size:13px;
+  font-weight:800;
+  letter-spacing:4px;
 }
-section{padding:100px 10%;scroll-margin-top:70px}
-.section-label{color:var(--red);font-size:12px;letter-spacing:4px;font-weight:800}
-h2{font-size:clamp(32px,5vw,48px);margin:12px 0 18px}
-.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:18px;margin-top:38px}
-.card{
-  background:var(--panel);border:1px solid #ffffff12;
-  padding:27px;border-radius:15px;transition:.25s;
+
+h1 {
+  font-size:clamp(48px,8vw,94px);
+  line-height:1.02;
+  margin:22px 0;
 }
-.card:hover{transform:translateY(-6px);border-color:#ff424b70}
-.card h3{margin-top:0;font-size:21px}
-.card p{color:var(--muted);line-height:1.7}
-.tag{
-  display:inline-block;background:#ff424b18;color:#ff777e;
-  border:1px solid #ff424b38;padding:6px 10px;
-  border-radius:30px;font-size:12px;margin:4px 3px 0 0;
+
+h1 span { color:var(--red); }
+
+.hero p,.section-intro {
+  color:var(--muted);
+  font-size:18px;
+  line-height:1.8;
+  max-width:650px;
 }
-.skills{display:flex;flex-wrap:wrap;gap:10px;margin-top:25px}
-.skill{padding:11px 16px;background:var(--panel);border:1px solid #ffffff18;border-radius:8px;color:#ddd}
-.contact-box{background:linear-gradient(130deg,#211116,#131319);border:1px solid #ff424b40;border-radius:18px;padding:35px}
-footer{text-align:center;padding:35px;color:#777;border-top:1px solid #ffffff12}
-.reveal{opacity:1;transform:none;animation:fadein .8s ease both}
-@keyframes fadein{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
-@media(max-width:650px){
- nav{padding:17px 5%}nav a{margin-left:10px;font-size:12px}
- section{padding:75px 7%}.hero{padding-left:7%;padding-right:7%}
- .hero-logo{width:80px;height:80px}
+
+.primary {
+  display:inline-block;
+  background:var(--red);
+  color:white;
+  padding:14px 23px;
+  border-radius:8px;
+  text-decoration:none;
+  font-weight:750;
+  margin-top:20px;
+  border:0;
 }
-#editor{
- display:none;position:fixed;inset:0;z-index:50;
- background:#08080bf5;overflow:auto;padding:35px 5%;
+
+section {
+  padding:100px 10%;
+  scroll-margin-top:70px;
 }
-.editor-panel{max-width:950px;margin:auto;background:#15151d;padding:25px;border-radius:16px;border:1px solid #ffffff20}
-.editor-panel input,.editor-panel textarea{
- width:100%;background:#09090d;color:white;border:1px solid #ffffff25;
- padding:12px;border-radius:7px;margin:7px 0 15px;font:inherit;
+
+.section-label {
+  color:var(--red);
+  font-size:12px;
+  letter-spacing:4px;
+  font-weight:800;
 }
-.editor-panel textarea{min-height:85px;resize:vertical}
-.editor-panel label{font-size:13px;color:#aaa}
-.editor-actions{display:flex;gap:10px;flex-wrap:wrap;margin:20px 0}
-.editor-actions button,.editor-item button{
- border:0;border-radius:7px;padding:10px 14px;background:#292932;color:white;
+
+h2 {
+  font-size:clamp(32px,5vw,48px);
+  margin:12px 0 18px;
 }
-.editor-actions .save{background:var(--red)}
-.editor-item{padding:18px;margin:15px 0;background:#202029;border-radius:10px}
-.editor-item h3{margin:0 0 12px}
-.close{float:right;background:#333;color:white;border:0;padding:9px 13px;border-radius:7px}
+
+.grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(230px,1fr));
+  gap:18px;
+  margin-top:38px;
+}
+
+.card {
+  background:var(--panel);
+  border:1px solid #ffffff12;
+  padding:27px;
+  border-radius:15px;
+  transition:.25s;
+}
+
+.card:hover {
+  transform:translateY(-6px);
+  border-color:#ff424b70;
+}
+
+.card h3 {
+  margin-top:0;
+  font-size:21px;
+}
+
+.card p {
+  color:var(--muted);
+  line-height:1.7;
+}
+
+.tag {
+  display:inline-block;
+  background:#ff424b18;
+  color:#ff777e;
+  border:1px solid #ff424b38;
+  padding:6px 10px;
+  border-radius:30px;
+  font-size:12px;
+  margin:4px 3px 0 0;
+}
+
+.skills {
+  display:flex;
+  flex-wrap:wrap;
+  gap:10px;
+  margin-top:25px;
+}
+
+.skill {
+  padding:11px 16px;
+  background:var(--panel);
+  border:1px solid #ffffff18;
+  border-radius:8px;
+  color:#ddd;
+}
+
+.contact-box {
+  background:linear-gradient(130deg,#211116,#131319);
+  border:1px solid #ff424b40;
+  border-radius:18px;
+  padding:35px;
+}
+
+footer {
+  text-align:center;
+  padding:35px;
+  color:#777;
+  border-top:1px solid #ffffff12;
+}
+
+.reveal {
+  opacity:1;
+  transform:none;
+  animation:fadein .8s ease both;
+}
+
+@keyframes fadein {
+  from { opacity:0;transform:translateY(18px); }
+  to { opacity:1;transform:none; }
+}
+
+@media(max-width:650px) {
+  nav { padding:17px 5%; }
+  nav a { margin-left:10px;font-size:12px; }
+  section { padding:75px 7%; }
+  .hero { padding-left:7%;padding-right:7%; }
+  .hero-logo { width:80px;height:80px; }
+}
+
+#editor {
+  display:none;
+  position:fixed;
+  inset:0;
+  z-index:50;
+  background:#08080bf5;
+  overflow:auto;
+  padding:35px 5%;
+}
+
+.editor-panel {
+  max-width:950px;
+  margin:auto;
+  background:#15151d;
+  padding:25px;
+  border-radius:16px;
+  border:1px solid #ffffff20;
+}
+
+.editor-panel input,
+.editor-panel textarea {
+  width:100%;
+  background:#09090d;
+  color:white;
+  border:1px solid #ffffff25;
+  padding:12px;
+  border-radius:7px;
+  margin:7px 0 15px;
+  font:inherit;
+}
+
+.editor-panel textarea {
+  min-height:85px;
+  resize:vertical;
+}
+
+.editor-panel label {
+  font-size:13px;
+  color:#aaa;
+}
+
+.editor-actions {
+  display:flex;
+  gap:10px;
+  flex-wrap:wrap;
+  margin:20px 0;
+}
+
+.editor-actions button,
+.editor-item button {
+  border:0;
+  border-radius:7px;
+  padding:10px 14px;
+  background:#292932;
+  color:white;
+}
+
+.editor-actions .save { background:var(--red); }
+
+.editor-item {
+  padding:18px;
+  margin:15px 0;
+  background:#202029;
+  border-radius:10px;
+}
+
+.editor-item h3 { margin:0 0 12px; }
+
+.close {
+  float:right;
+  background:#333;
+  color:white;
+  border:0;
+  padding:9px 13px;
+  border-radius:7px;
+}
+
+#save-status {
+  color:#aaa;
+  font-size:13px;
+  line-height:1.6;
+}
 </style>
 </head>
 
@@ -120,6 +355,7 @@ footer{text-align:center;padding:35px;color:#777;border-top:1px solid #ffffff12}
     <img src="logo.jpg" alt="FyreDrift logo">
     <span>FYRE<span>DRIFT</span></span>
   </div>
+
   <div>
     <a href="#about">About</a>
     <a href="#services">Skills</a>
@@ -129,63 +365,97 @@ footer{text-align:center;padding:35px;color:#777;border-top:1px solid #ffffff12}
 </nav>
 
 <header class="hero">
- <div class="hero-content reveal">
-  <img src="logo.jpg" alt="FyreDrift logo" class="hero-logo">
-  <div class="eyebrow">DEVELOPER PORTFOLIO</div>
-  <h1>Building things.<br><span>Making ideas real.</span></h1>
-  <p id="hero-description">I'm FyreDrift, a developer interested in creating useful tools, Minecraft plugins, Discord bots and Python projects.</p>
-  <a class="primary" href="#projects" id="hero-button">Explore my work ↗</a>
- </div>
+  <div class="hero-content reveal">
+    <img src="logo.jpg" alt="FyreDrift logo" class="hero-logo">
+
+    <div class="eyebrow">DEVELOPER PORTFOLIO</div>
+
+    <h1>Building things.<br><span>Making ideas real.</span></h1>
+
+    <p id="hero-description">
+      I'm FyreDrift, a developer interested in creating useful tools,
+      Minecraft plugins, Discord bots and Python projects.
+    </p>
+
+    <a class="primary" href="#projects" id="hero-button">
+      Explore my work ↗
+    </a>
+  </div>
 </header>
 
 <main id="main-content">
 
 <section id="about" class="reveal">
- <div class="section-label">01 / ABOUT</div>
- <h2>Behind the username.</h2>
- <p class="section-intro" id="about-text">I'm Mustafa, also known online as FyreDrift or simply Fyre. I enjoy programming, experimenting with ideas and turning concepts into working projects.</p>
- <p class="section-intro" id="about-text-2">I focus on creating practical digital experiences, learning new technologies and helping others bring their ideas to life.</p>
+  <div class="section-label">01 / ABOUT</div>
+  <h2>Behind the username.</h2>
+
+  <p class="section-intro" id="about-text">
+    I'm Mustafa, also known online as FyreDrift or simply Fyre.
+    I enjoy programming, experimenting with ideas and turning concepts into working projects.
+  </p>
+
+  <p class="section-intro" id="about-text-2">
+    I focus on creating practical digital experiences, learning new technologies
+    and helping others bring their ideas to life.
+  </p>
 </section>
 
 <section id="services" class="reveal">
- <div class="section-label">02 / WHAT I DO</div>
- <h2>My skills.</h2>
- <div class="grid">
-  <article class="card">
-   <h3>⛏ Minecraft Development</h3>
-   <p>Creating Minecraft plugins, server features, custom systems and quality-of-life improvements.</p>
-  </article>
-  <article class="card">
-   <h3>🤖 Discord Development</h3>
-   <p>Developing Discord bots with custom commands, moderation tools, ticket systems and interactive features.</p>
-  </article>
-  <article class="card">
-   <h3>🐍 Python Programming</h3>
-   <p>Building scripts, utilities, experiments and small applications using Python.</p>
-  </article>
- </div>
- <div class="skills">
-  <span class="skill">Python</span><span class="skill">Java</span>
-  <span class="skill">HTML & CSS</span><span class="skill">JavaScript</span>
-  <span class="skill">Discord Bots</span><span class="skill">Minecraft Plugins</span>
- </div>
+  <div class="section-label">02 / WHAT I DO</div>
+  <h2>My skills.</h2>
+
+  <div class="grid">
+    <article class="card">
+      <h3>⛏ Minecraft Development</h3>
+      <p>Creating Minecraft plugins, server features, custom systems and quality-of-life improvements.</p>
+    </article>
+
+    <article class="card">
+      <h3>🤖 Discord Development</h3>
+      <p>Developing Discord bots with custom commands, moderation tools, ticket systems and interactive features.</p>
+    </article>
+
+    <article class="card">
+      <h3>🐍 Python Programming</h3>
+      <p>Building scripts, utilities, experiments and small applications using Python.</p>
+    </article>
+  </div>
+
+  <div class="skills">
+    <span class="skill">Python</span>
+    <span class="skill">Java</span>
+    <span class="skill">HTML & CSS</span>
+    <span class="skill">JavaScript</span>
+    <span class="skill">Discord Bots</span>
+    <span class="skill">Minecraft Plugins</span>
+  </div>
 </section>
 
 <section id="projects" class="reveal">
- <div class="section-label">03 / SELECTED WORK</div>
- <h2>Projects & interests.</h2>
- <p class="section-intro">A selection of development areas and projects I've explored.</p>
- <div class="grid" id="project-grid"></div>
+  <div class="section-label">03 / SELECTED WORK</div>
+  <h2>Projects & interests.</h2>
+
+  <p class="section-intro">
+    A selection of development areas and projects I've explored.
+  </p>
+
+  <div class="grid" id="project-grid"></div>
 </section>
 
 <section id="contact" class="reveal">
- <div class="section-label">04 / GET IN TOUCH</div>
- <div class="contact-box">
-  <h2>Have an idea?</h2>
-  <p class="section-intro">I'm open to discussing small projects, collaborations and development ideas. Some smaller requests may be possible for free, depending on complexity and availability.</p>
-  <button class="primary" onclick="copyTag()">Copy Discord tag</button>
-  <p id="copy-status" style="color:#aaa;font-size:13px"></p>
- </div>
+  <div class="section-label">04 / GET IN TOUCH</div>
+
+  <div class="contact-box">
+    <h2>Have an idea?</h2>
+
+    <p class="section-intro">
+      I'm open to discussing small projects, collaborations and development ideas.
+      Some smaller requests may be possible for free, depending on complexity and availability.
+    </p>
+
+    <button class="primary" onclick="copyTag()">Copy Discord tag</button>
+    <p id="copy-status" style="color:#aaa;font-size:13px"></p>
+  </div>
 </section>
 
 </main>
@@ -193,163 +463,362 @@ footer{text-align:center;padding:35px;color:#777;border-top:1px solid #ffffff12}
 <footer>© <span id="year"></span> FyreDrift. Designed with care.</footer>
 
 <div id="editor">
- <div class="editor-panel">
-  <button class="close" onclick="closeEditor()">Close ✕</button>
-  <div class="section-label">PORTFOLIO CONTROL PANEL</div>
-  <h2>Website editor</h2>
-  <p style="color:#aaa">Edit your portfolio content below. Changes are saved in this browser.</p>
+  <div class="editor-panel">
 
-  <div class="editor-actions">
-   <button class="save" onclick="saveAll()">Save changes</button>
-   <button onclick="addProject()">+ Add project</button>
-   <button onclick="resetSite()">Reset content</button>
+    <button class="close" onclick="closeEditor()">Close ✕</button>
+
+    <div class="section-label">PORTFOLIO CONTROL PANEL</div>
+    <h2>Website editor</h2>
+
+    <p style="color:#aaa">
+      Edit your content and save it globally to GitHub.
+    </p>
+
+    <div class="editor-actions">
+      <button class="save" id="save-button" onclick="saveAll()">Save changes</button>
+      <button onclick="addProject()">+ Add project</button>
+      <button onclick="resetSite()">Reset content</button>
+    </div>
+
+    <h3>Hero section</h3>
+
+    <label>Main description</label>
+    <textarea id="edit-hero"></textarea>
+
+    <label>Button text</label>
+    <input id="edit-button">
+
+    <h3>About section</h3>
+
+    <label>About description</label>
+    <textarea id="edit-about"></textarea>
+
+    <label>Second paragraph</label>
+    <textarea id="edit-about2"></textarea>
+
+    <h3>Projects</h3>
+    <div id="project-editor"></div>
+
+    <p id="save-status">
+      Loading your saved portfolio content...
+    </p>
+
   </div>
-
-  <h3>Hero section</h3>
-  <label>Main description</label>
-  <textarea id="edit-hero"></textarea>
-  <label>Button text</label>
-  <input id="edit-button">
-
-  <h3>About section</h3>
-  <label>About description</label>
-  <textarea id="edit-about"></textarea>
-  <label>Second paragraph</label>
-  <textarea id="edit-about2"></textarea>
-
-  <h3>Projects</h3>
-  <div id="project-editor"></div>
-
-  <p style="color:#999;font-size:12px">Browser saves are local to this device. They do not automatically update GitHub Pages.</p>
- </div>
 </div>
 
 <script>
-const PASS = "Mustafa15!";
-const PIN = "410723";
+const API_URL =
+  "https://fyredrift-portfolio-api.1must2415.workers.dev/";
 
 const defaults = {
- hero: "I'm FyreDrift, a developer interested in creating useful tools, Minecraft plugins, Discord bots and Python projects.",
- button: "Explore my work",
- about: "I'm Mustafa, also known online as FyreDrift or simply Fyre. I enjoy programming, experimenting with ideas and turning concepts into working projects.",
- about2: "I focus on creating practical digital experiences, learning new technologies and helping others bring their ideas to life.",
- projects: [
-  ["Minecraft Server Systems","Custom server features, permissions, player systems and plugin experimentation.","Minecraft, Java"],
-  ["Discord Bots","Custom bots with moderation, ticket management, administration and community tools.","Discord, Development"],
-  ["Python Applications","Small applications, command-line tools and experiments with interfaces and automation.","Python, Programming"],
-  ["Roblox Development","Exploring game concepts, user interfaces, progression systems and interactive mechanics.","Roblox, Game Development"]
- ]
+  hero: "I'm FyreDrift, a developer interested in creating useful tools, Minecraft plugins, Discord bots and Python projects.",
+  button: "Explore my work",
+  about: "I'm Mustafa, also known online as FyreDrift or simply Fyre. I enjoy programming, experimenting with ideas and turning concepts into working projects.",
+  about2: "I focus on creating practical digital experiences, learning new technologies and helping others bring their ideas to life.",
+  projects: [
+    [
+      "Minecraft Server Systems",
+      "Custom server features, permissions, player systems and plugin experimentation.",
+      "Minecraft, Java"
+    ],
+    [
+      "Discord Bots",
+      "Custom bots with moderation, ticket management, administration and community tools.",
+      "Discord, Development"
+    ],
+    [
+      "Python Applications",
+      "Small applications, command-line tools and experiments with interfaces and automation.",
+      "Python, Programming"
+    ],
+    [
+      "Roblox Development",
+      "Exploring game concepts, user interfaces, progression systems and interactive mechanics.",
+      "Roblox, Game Development"
+    ]
+  ]
 };
 
-function cloneDefaults(){return JSON.parse(JSON.stringify(defaults))}
-let data;
-try {
- data=JSON.parse(localStorage.getItem("fyrePortfolioData")) || cloneDefaults();
-} catch(error) {
- data=cloneDefaults();
+function cloneDefaults() {
+  return JSON.parse(JSON.stringify(defaults));
 }
 
-function copyTag(){
- const tag="@fyredriftofficial";
- if(navigator.clipboard && window.isSecureContext){
-  navigator.clipboard.writeText(tag)
-   .then(()=>showCopyStatus("Copied "+tag+"!"))
-   .catch(()=>fallbackCopy(tag));
- } else fallbackCopy(tag);
-}
-function fallbackCopy(text){
- const input=document.createElement("textarea");
- input.value=text;document.body.appendChild(input);input.select();
- try{document.execCommand("copy");showCopyStatus("Copied "+text+"!");}
- catch(e){showCopyStatus("Copy wasn't available. Discord: "+text);}
- input.remove();
-}
-function showCopyStatus(message){
- document.getElementById("copy-status").textContent=message;
-}
-function openEditor(){
- const password=prompt("Enter editor password:");
- if(password!==PASS){alert("Incorrect password.");return;}
- const pin=prompt("Enter editor PIN:");
- if(pin!==PIN){alert("Incorrect PIN.");return;}
- document.getElementById("editor").style.display="block";
- loadEditor();
-}
-function closeEditor(){document.getElementById("editor").style.display="none";}
+let data = cloneDefaults();
+let editorPassword = "";
+let editorPin = "";
 
-function loadEditor(){
- document.getElementById("edit-hero").value=data.hero;
- document.getElementById("edit-button").value=data.button;
- document.getElementById("edit-about").value=data.about;
- document.getElementById("edit-about2").value=data.about2;
- renderProjectEditor();
+function setStatus(message) {
+  document.getElementById("save-status").textContent = message;
 }
-function renderProjectEditor(){
- const holder=document.getElementById("project-editor");
- holder.innerHTML="";
- data.projects.forEach((project,index)=>{
-  const item=document.createElement("div");
-  item.className="editor-item";
-  const title=document.createElement("h3");
-  title.textContent="Project "+(index+1);
-  const titleInput=document.createElement("input");
-  titleInput.value=project[0];titleInput.placeholder="Project title";
-  const desc=document.createElement("textarea");
-  desc.value=project[1];desc.placeholder="Project description";
-  const tags=document.createElement("input");
-  tags.value=project[2];tags.placeholder="Tags, separated by commas";
-  const remove=document.createElement("button");
-  remove.textContent="Delete project";
-  remove.onclick=()=>{data.projects.splice(index,1);renderProjectEditor();};
-  item.append(title,titleInput,desc,tags,remove);
-  item._fields=[titleInput,desc,tags];
-  holder.appendChild(item);
- });
+
+async function loadGlobalData() {
+  try {
+    const response = await fetch(API_URL + "?data=1");
+    const result = await response.json();
+
+    if (!response.ok) {
+      throw new Error(result.error || "Couldn't load portfolio.");
+    }
+
+    if (result.data) {
+      data = {
+        ...cloneDefaults(),
+        ...result.data,
+        projects: Array.isArray(result.data.projects)
+          ? result.data.projects
+          : cloneDefaults().projects
+      };
+    }
+
+    applyData();
+    setStatus("Portfolio content loaded successfully.");
+  } catch (error) {
+    console.error("Portfolio loading error:", error);
+    setStatus("Couldn't load saved content. Showing default content.");
+  }
 }
-function collectProjects(){
- return [...document.querySelectorAll(".editor-item")].map(item=>item._fields.map(field=>field.value));
+
+async function openEditor() {
+  const password = prompt("Enter editor password:");
+  if (password === null) return;
+
+  const pin = prompt("Enter editor PIN:");
+  if (pin === null) return;
+
+  try {
+    const response = await fetch(API_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        action: "verify",
+        password,
+        pin
+      })
+    });
+
+    const result = await response.json();
+
+    if (!response.ok || !result.success) {
+      alert(result.error || "Login failed.");
+      return;
+    }
+
+    editorPassword = password;
+    editorPin = pin;
+
+    document.getElementById("editor").style.display = "block";
+    loadEditor();
+
+  } catch (error) {
+    alert("Couldn't connect to the editor server: " + error.message);
+  }
 }
-function addProject(){
- data.projects.push(["New project","Write a description here.","New tag"]);
- renderProjectEditor();
+
+function closeEditor() {
+  document.getElementById("editor").style.display = "none";
+  editorPassword = "";
+  editorPin = "";
 }
-function saveAll(){
- data.hero=document.getElementById("edit-hero").value;
- data.button=document.getElementById("edit-button").value;
- data.about=document.getElementById("edit-about").value;
- data.about2=document.getElementById("edit-about2").value;
- data.projects=collectProjects();
- localStorage.setItem("fyrePortfolioData",JSON.stringify(data));
- applyData();
- alert("Changes saved in this browser!");
+
+function loadEditor() {
+  document.getElementById("edit-hero").value = data.hero;
+  document.getElementById("edit-button").value = data.button;
+  document.getElementById("edit-about").value = data.about;
+  document.getElementById("edit-about2").value = data.about2;
+
+  renderProjectEditor();
 }
-function applyData(){
- document.getElementById("hero-description").textContent=data.hero;
- document.getElementById("hero-button").textContent=data.button+" ↗";
- document.getElementById("about-text").textContent=data.about;
- document.getElementById("about-text-2").textContent=data.about2;
- const grid=document.getElementById("project-grid");
- grid.innerHTML="";
- data.projects.forEach(project=>{
-  const card=document.createElement("article");
-  card.className="card";
-  const h=document.createElement("h3");h.textContent=project[0];
-  const p=document.createElement("p");p.textContent=project[1];
-  card.append(h,p);
-  project[2].split(",").map(x=>x.trim()).filter(Boolean).forEach(tag=>{
-   const span=document.createElement("span");span.className="tag";span.textContent=tag;card.append(span);
+
+function renderProjectEditor() {
+  const holder = document.getElementById("project-editor");
+  holder.innerHTML = "";
+
+  data.projects.forEach((project, index) => {
+    const item = document.createElement("div");
+    item.className = "editor-item";
+
+    const title = document.createElement("h3");
+    title.textContent = "Project " + (index + 1);
+
+    const titleInput = document.createElement("input");
+    titleInput.value = project[0];
+    titleInput.placeholder = "Project title";
+
+    const desc = document.createElement("textarea");
+    desc.value = project[1];
+    desc.placeholder = "Project description";
+
+    const tags = document.createElement("input");
+    tags.value = project[2];
+    tags.placeholder = "Tags, separated by commas";
+
+    const remove = document.createElement("button");
+    remove.textContent = "Delete project";
+
+    remove.onclick = () => {
+      data.projects.splice(index, 1);
+      renderProjectEditor();
+    };
+
+    item.append(title, titleInput, desc, tags, remove);
+    item._fields = [titleInput, desc, tags];
+
+    holder.appendChild(item);
   });
-  grid.append(card);
- });
 }
-function resetSite(){
- if(!confirm("Reset all portfolio content to its original version?"))return;
- data=cloneDefaults();
- localStorage.removeItem("fyrePortfolioData");
- loadEditor();applyData();
+
+function collectProjects() {
+  return [...document.querySelectorAll(".editor-item")]
+    .map(item => item._fields.map(field => field.value));
 }
-document.getElementById("year").textContent=new Date().getFullYear();
+
+function addProject() {
+  data.projects.push([
+    "New project",
+    "Write a description here.",
+    "New tag"
+  ]);
+
+  renderProjectEditor();
+}
+
+async function saveAll() {
+  data.hero = document.getElementById("edit-hero").value;
+  data.button = document.getElementById("edit-button").value;
+  data.about = document.getElementById("edit-about").value;
+  data.about2 = document.getElementById("edit-about2").value;
+  data.projects = collectProjects();
+
+  const button = document.getElementById("save-button");
+
+  button.disabled = true;
+  button.textContent = "Saving...";
+
+  setStatus("Saving your changes to GitHub...");
+
+  try {
+    const response = await fetch(API_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        action: "save",
+        password: editorPassword,
+        pin: editorPin,
+        data
+      })
+    });
+
+    const result = await response.json();
+
+    if (!response.ok || !result.success) {
+      throw new Error(result.error || "Save failed.");
+    }
+
+    applyData();
+
+    setStatus(
+      "Successfully saved to GitHub! Changes are now global."
+    );
+
+    alert("Portfolio saved globally!");
+
+  } catch (error) {
+    setStatus("Save failed: " + error.message);
+    alert("Couldn't save: " + error.message);
+
+  } finally {
+    button.disabled = false;
+    button.textContent = "Save changes";
+  }
+}
+
+function applyData() {
+  document.getElementById("hero-description").textContent = data.hero;
+  document.getElementById("hero-button").textContent = data.button + " ↗";
+  document.getElementById("about-text").textContent = data.about;
+  document.getElementById("about-text-2").textContent = data.about2;
+
+  const grid = document.getElementById("project-grid");
+  grid.innerHTML = "";
+
+  data.projects.forEach(project => {
+    const card = document.createElement("article");
+    card.className = "card";
+
+    const heading = document.createElement("h3");
+    heading.textContent = project[0];
+
+    const paragraph = document.createElement("p");
+    paragraph.textContent = project[1];
+
+    card.append(heading, paragraph);
+
+    String(project[2] || "")
+      .split(",")
+      .map(tag => tag.trim())
+      .filter(Boolean)
+      .forEach(tag => {
+        const span = document.createElement("span");
+        span.className = "tag";
+        span.textContent = tag;
+        card.append(span);
+      });
+
+    grid.append(card);
+  });
+}
+
+function resetSite() {
+  if (!confirm("Reset all portfolio content to its original version?")) {
+    return;
+  }
+
+  data = cloneDefaults();
+
+  loadEditor();
+  applyData();
+
+  setStatus("Defaults loaded. Press Save changes to publish them.");
+}
+
+function copyTag() {
+  const tag = "@fyredriftofficial";
+
+  if (navigator.clipboard && window.isSecureContext) {
+    navigator.clipboard.writeText(tag)
+      .then(() => showCopyStatus("Copied " + tag + "!"))
+      .catch(() => fallbackCopy(tag));
+  } else {
+    fallbackCopy(tag);
+  }
+}
+
+function fallbackCopy(text) {
+  const input = document.createElement("textarea");
+
+  input.value = text;
+  document.body.appendChild(input);
+  input.select();
+
+  try {
+    document.execCommand("copy");
+    showCopyStatus("Copied " + text + "!");
+  } catch (error) {
+    showCopyStatus("Copy wasn't available. Discord: " + text);
+  }
+
+  input.remove();
+}
+
+function showCopyStatus(message) {
+  document.getElementById("copy-status").textContent = message;
+}
+
+document.getElementById("year").textContent =
+  new Date().getFullYear();
+
 applyData();
+loadGlobalData();
 </script>
 
 </body>
