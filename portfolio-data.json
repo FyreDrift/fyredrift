@@ -1,0 +1,28 @@
+{
+  "hero": "I'm FyreDrift, a developer interested in creating useful tools, Minecraft plugins, Discord bots and Python projects!",
+  "button": "Explore my work",
+  "about": "I'm Mustafa, also known online as FyreDrift or simply Fyre. I enjoy programming, experimenting with ideas and turning concepts into working projects.",
+  "about2": "I focus on creating practical digital experiences, learning new technologies and helping others bring their ideas to life.",
+  "projects": [
+    [
+      "Minecraft Server Systems",
+      "Custom server features, permissions, player systems and plugin experimentation.",
+      "Minecraft, Java"
+    ],
+    [
+      "Discord Bots",
+      "Custom bots with moderation, ticket management, administration and community tools.",
+      "Discord, Development"
+    ],
+    [
+      "Python Applications",
+      "Small applications, command-line tools and experiments with interfaces and automation.",
+      "Python, Programming"
+    ],
+    [
+      "Roblox Development",
+      "Exploring game concepts, user interfaces, progression systems and interactive mechanics.",
+      "Roblox, Game Development"
+    ]
+  ]
+}
