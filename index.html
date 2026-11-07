@@ -5,7 +5,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>FyreDrift | Developer Portfolio</title>
-<meta name="description" content="The portfolio of FyreDrift, a developer specialising in Minecraft plugins, Discord bots and Python.">
+<meta name="description" content="FyreDrift's developer portfolio. Minecraft plugins, Discord bots and Python projects.">
+
 <style>
 :root {
   --bg:#09090c;
@@ -23,11 +24,12 @@ body{
 nav{
   position:fixed;top:0;left:0;right:0;z-index:10;
   display:flex;justify-content:space-between;align-items:center;
-  padding:18px 7%;background:#09090ce8;
+  padding:14px 7%;background:#09090ce8;
   border-bottom:1px solid #ffffff12;backdrop-filter:blur(15px);
 }
-.logo{font-weight:900;letter-spacing:1px}
-.logo span{color:var(--red)}
+.brand{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:1px}
+.brand img{width:43px;height:43px;object-fit:contain;border-radius:9px}
+.brand span span{color:var(--red)}
 nav a{color:var(--muted);text-decoration:none;margin-left:22px;font-size:14px}
 nav a:hover{color:white}
 button{cursor:pointer;font:inherit}
@@ -46,6 +48,11 @@ button{cursor:pointer;font:inherit}
   right:-100px;top:100px;
 }
 .hero-content{position:relative;max-width:850px}
+.hero-logo{
+  width:105px;height:105px;object-fit:contain;
+  border-radius:20px;margin-bottom:25px;
+  filter:drop-shadow(0 0 25px #ff424b35);
+}
 .eyebrow{color:var(--red);font-size:13px;font-weight:800;letter-spacing:4px}
 h1{font-size:clamp(48px,8vw,94px);line-height:1.02;margin:22px 0}
 h1 span{color:var(--red)}
@@ -80,6 +87,7 @@ footer{text-align:center;padding:35px;color:#777;border-top:1px solid #ffffff12}
 @media(max-width:650px){
  nav{padding:17px 5%}nav a{margin-left:10px;font-size:12px}
  section{padding:75px 7%}.hero{padding-left:7%;padding-right:7%}
+ .hero-logo{width:80px;height:80px}
 }
 #editor{
  display:none;position:fixed;inset:0;z-index:50;
@@ -102,12 +110,16 @@ footer{text-align:center;padding:35px;color:#777;border-top:1px solid #ffffff12}
 .close{float:right;background:#333;color:white;border:0;padding:9px 13px;border-radius:7px}
 </style>
 </head>
+
 <body>
 
 <button class="edit-button" onclick="openEditor()">✎ EDIT</button>
 
 <nav>
-  <div class="logo">FYRE<span>DRIFT</span></div>
+  <div class="brand">
+    <img src="logo.jpg" alt="FyreDrift logo">
+    <span>FYRE<span>DRIFT</span></span>
+  </div>
   <div>
     <a href="#about">About</a>
     <a href="#services">Skills</a>
@@ -118,6 +130,7 @@ footer{text-align:center;padding:35px;color:#777;border-top:1px solid #ffffff12}
 
 <header class="hero">
  <div class="hero-content reveal">
+  <img src="logo.jpg" alt="FyreDrift logo" class="hero-logo">
   <div class="eyebrow">DEVELOPER PORTFOLIO</div>
   <h1>Building things.<br><span>Making ideas real.</span></h1>
   <p id="hero-description">I'm FyreDrift, a developer interested in creating useful tools, Minecraft plugins, Discord bots and Python projects.</p>
@@ -130,8 +143,8 @@ footer{text-align:center;padding:35px;color:#777;border-top:1px solid #ffffff12}
 <section id="about" class="reveal">
  <div class="section-label">01 / ABOUT</div>
  <h2>Behind the username.</h2>
- <p class="section-intro">I'm Mustafa, also known online as FyreDrift or simply Fyre. I enjoy programming, experimenting with ideas and turning concepts into working projects.</p>
- <p class="section-intro">I focus on creating practical digital experiences, learning new technologies and helping others bring their ideas to life.</p>
+ <p class="section-intro" id="about-text">I'm Mustafa, also known online as FyreDrift or simply Fyre. I enjoy programming, experimenting with ideas and turning concepts into working projects.</p>
+ <p class="section-intro" id="about-text-2">I focus on creating practical digital experiences, learning new technologies and helping others bring their ideas to life.</p>
 </section>
 
 <section id="services" class="reveal">
@@ -162,28 +175,7 @@ footer{text-align:center;padding:35px;color:#777;border-top:1px solid #ffffff12}
  <div class="section-label">03 / SELECTED WORK</div>
  <h2>Projects & interests.</h2>
  <p class="section-intro">A selection of development areas and projects I've explored.</p>
- <div class="grid" id="project-grid">
-  <article class="card">
-   <h3>Minecraft Server Systems</h3>
-   <p>Custom server features, permissions, player systems and plugin experimentation.</p>
-   <span class="tag">Minecraft</span><span class="tag">Java</span>
-  </article>
-  <article class="card">
-   <h3>Discord Bots</h3>
-   <p>Custom bots with moderation, ticket management, administration and community tools.</p>
-   <span class="tag">Discord</span><span class="tag">Development</span>
-  </article>
-  <article class="card">
-   <h3>Python Applications</h3>
-   <p>Small applications, command-line tools and experiments with interfaces and automation.</p>
-   <span class="tag">Python</span><span class="tag">Programming</span>
-  </article>
-  <article class="card">
-   <h3>Roblox Development</h3>
-   <p>Exploring game concepts, user interfaces, progression systems and interactive mechanics.</p>
-   <span class="tag">Roblox</span><span class="tag">Game Development</span>
-  </article>
- </div>
+ <div class="grid" id="project-grid"></div>
 </section>
 
 <section id="contact" class="reveal">
@@ -228,7 +220,7 @@ footer{text-align:center;padding:35px;color:#777;border-top:1px solid #ffffff12}
   <h3>Projects</h3>
   <div id="project-editor"></div>
 
-  <p style="color:#999;font-size:12px">Note: Browser saves are local to this device. They do not automatically update GitHub Pages.</p>
+  <p style="color:#999;font-size:12px">Browser saves are local to this device. They do not automatically update GitHub Pages.</p>
  </div>
 </div>
 
@@ -249,12 +241,20 @@ const defaults = {
  ]
 };
 
-let data = JSON.parse(localStorage.getItem("fyrePortfolioData") || "null") || structuredClone(defaults);
+function cloneDefaults(){return JSON.parse(JSON.stringify(defaults))}
+let data;
+try {
+ data=JSON.parse(localStorage.getItem("fyrePortfolioData")) || cloneDefaults();
+} catch(error) {
+ data=cloneDefaults();
+}
 
 function copyTag(){
- const tag = "@fyredriftofficial";
+ const tag="@fyredriftofficial";
  if(navigator.clipboard && window.isSecureContext){
-  navigator.clipboard.writeText(tag).then(()=>showCopyStatus("Copied "+tag+"!")).catch(()=>fallbackCopy(tag));
+  navigator.clipboard.writeText(tag)
+   .then(()=>showCopyStatus("Copied "+tag+"!"))
+   .catch(()=>fallbackCopy(tag));
  } else fallbackCopy(tag);
 }
 function fallbackCopy(text){
@@ -326,9 +326,8 @@ function saveAll(){
 function applyData(){
  document.getElementById("hero-description").textContent=data.hero;
  document.getElementById("hero-button").textContent=data.button+" ↗";
- const about=document.querySelector("#about .section-intro");
- const about2=document.querySelectorAll("#about .section-intro")[1];
- about.textContent=data.about;about2.textContent=data.about2;
+ document.getElementById("about-text").textContent=data.about;
+ document.getElementById("about-text-2").textContent=data.about2;
  const grid=document.getElementById("project-grid");
  grid.innerHTML="";
  data.projects.forEach(project=>{
@@ -345,12 +344,13 @@ function applyData(){
 }
 function resetSite(){
  if(!confirm("Reset all portfolio content to its original version?"))return;
- data=structuredClone(defaults);
+ data=cloneDefaults();
  localStorage.removeItem("fyrePortfolioData");
  loadEditor();applyData();
 }
 document.getElementById("year").textContent=new Date().getFullYear();
 applyData();
 </script>
+
 </body>
 </html>
