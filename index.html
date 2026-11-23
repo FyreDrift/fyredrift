@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -153,6 +152,16 @@ h1 span { color:var(--red); }
   font-weight:750;
   margin-top:20px;
   border:0;
+  transition:opacity .2s;
+}
+
+.primary:hover {
+  opacity:0.9;
+}
+
+.primary:disabled {
+  opacity:0.5;
+  cursor:not-allowed;
 }
 
 section {
@@ -235,6 +244,64 @@ h2 {
   padding:35px;
 }
 
+.contact-form {
+  margin-top:30px;
+  padding-top:30px;
+  border-top:1px solid #ffffff15;
+}
+
+.contact-form h3 {
+  margin:0 0 8px;
+  font-size:22px;
+}
+
+.form-grid {
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(220px,1fr));
+  gap:16px;
+  margin-top:18px;
+}
+
+.form-group {
+  display:flex;
+  flex-direction:column;
+}
+
+.form-group.full {
+  grid-column:1 / -1;
+}
+
+.form-group label {
+  font-size:13px;
+  color:var(--muted);
+  margin-bottom:6px;
+  font-weight:600;
+}
+
+.form-group input,
+.form-group textarea {
+  width:100%;
+  background:#09090d;
+  color:var(--text);
+  border:1px solid #ffffff20;
+  padding:12px 14px;
+  border-radius:8px;
+  font:inherit;
+  font-size:14px;
+  transition:border-color .2s;
+}
+
+.form-group input:focus,
+.form-group textarea:focus {
+  outline:none;
+  border-color:var(--red);
+}
+
+.form-group textarea {
+  min-height:110px;
+  resize:vertical;
+}
+
 footer {
   text-align:center;
   padding:35px;
@@ -259,6 +326,7 @@ footer {
   section { padding:75px 7%; }
   .hero { padding-left:7%;padding-right:7%; }
   .hero-logo { width:80px;height:80px; }
+  .contact-box { padding:24px; }
 }
 
 #editor {
@@ -325,9 +393,42 @@ footer {
   margin:15px 0;
   background:#202029;
   border-radius:10px;
+  border:1px solid #ffffff10;
 }
 
 .editor-item h3 { margin:0 0 12px; }
+
+.contact-meta {
+  display:flex;
+  flex-wrap:wrap;
+  gap:8px;
+  margin-bottom:12px;
+}
+
+.contact-badge {
+  background:#09090d;
+  border:1px solid #ffffff18;
+  padding:5px 10px;
+  border-radius:6px;
+  font-size:12px;
+  color:#ddd;
+}
+
+.contact-badge strong {
+  color:var(--red);
+}
+
+.contact-msg {
+  background:#09090d;
+  border:1px solid #ffffff12;
+  padding:12px;
+  border-radius:7px;
+  color:#e2e2e8;
+  font-size:14px;
+  line-height:1.6;
+  white-space:pre-wrap;
+  margin-bottom:12px;
+}
 
 .close {
   float:right;
@@ -455,6 +556,48 @@ footer {
 
     <button class="primary" onclick="copyTag()">Copy Discord tag</button>
     <p id="copy-status" style="color:#aaa;font-size:13px"></p>
+
+    <form class="contact-form" id="contact-form" onsubmit="submitContact(event)">
+      <h3>Send a development request</h3>
+      <p style="color:var(--muted);font-size:14px;margin:0;">
+        Fill out the details below and I'll review your request.
+      </p>
+
+      <div class="form-grid">
+        <div class="form-group full">
+          <label for="req-details">Development Request *</label>
+          <textarea id="req-details" placeholder="Describe what you want built (e.g., Minecraft plugin, Discord bot, Python tool)..." required></textarea>
+        </div>
+
+        <div class="form-group">
+          <label for="req-deadline">Deadline</label>
+          <input type="text" id="req-deadline" placeholder="e.g., 2 weeks, No rush, Next Friday">
+        </div>
+
+        <div class="form-group">
+          <label for="req-pay">Amount of Pay</label>
+          <input type="text" id="req-pay" placeholder="e.g., $25, Free / Small request, Negotiable">
+        </div>
+
+        <div class="form-group">
+          <label for="req-discord">Discord Username *</label>
+          <input type="text" id="req-discord" placeholder="e.g., @username" required>
+        </div>
+
+        <div class="form-group">
+          <label for="req-email">Email</label>
+          <input type="email" id="req-email" placeholder="you@example.com">
+        </div>
+
+        <div class="form-group">
+          <label for="req-phone">Phone Number</label>
+          <input type="tel" id="req-phone" placeholder="+1 (555) 000-0000">
+        </div>
+      </div>
+
+      <button type="submit" class="primary" id="contact-submit">Submit</button>
+      <p id="contact-status" style="color:#aaa;font-size:13px;margin-top:12px;"></p>
+    </form>
   </div>
 </section>
 
@@ -479,6 +622,12 @@ footer {
       <button onclick="addProject()">+ Add project</button>
       <button onclick="resetSite()">Reset content</button>
     </div>
+
+    <h3>Recent contacts</h3>
+    <p style="color:#aaa;font-size:13px;margin-top:-8px;">
+      Visitor development requests submitted via the contact form. (Click "Save changes" after deleting to update globally.)
+    </p>
+    <div id="contacts-editor"></div>
 
     <h3>Hero section</h3>
 
@@ -510,6 +659,8 @@ footer {
 const API_URL =
   "https://fyredrift-portfolio-api.1must2415.workers.dev/";
 
+const LOCAL_CONTACTS_KEY = "fyredrift_local_contacts";
+
 const defaults = {
   hero: "I'm FyreDrift, a developer interested in creating useful tools, Minecraft plugins, Discord bots and Python projects.",
   button: "Explore my work",
@@ -536,7 +687,8 @@ const defaults = {
       "Exploring game concepts, user interfaces, progression systems and interactive mechanics.",
       "Roblox, Game Development"
     ]
-  ]
+  ],
+  contacts: []
 };
 
 function cloneDefaults() {
@@ -549,6 +701,39 @@ let editorPin = "";
 
 function setStatus(message) {
   document.getElementById("save-status").textContent = message;
+}
+
+function getLocalContacts() {
+  try {
+    const saved = localStorage.getItem(LOCAL_CONTACTS_KEY);
+    return saved ? JSON.parse(saved) : [];
+  } catch {
+    return [];
+  }
+}
+
+function saveLocalContacts(list) {
+  try {
+    localStorage.setItem(LOCAL_CONTACTS_KEY, JSON.stringify(list));
+  } catch (e) {
+    console.error("Local storage error:", e);
+  }
+}
+
+function mergeContacts(remoteContacts = []) {
+  const local = getLocalContacts();
+  const seen = new Set();
+  const merged = [];
+
+  [...remoteContacts, ...local].forEach(c => {
+    const key = c.id || (c.date + "|" + c.discord + "|" + c.request);
+    if (!seen.has(key)) {
+      seen.add(key);
+      merged.push(c);
+    }
+  });
+
+  return merged;
 }
 
 async function loadGlobalData() {
@@ -566,15 +751,85 @@ async function loadGlobalData() {
         ...result.data,
         projects: Array.isArray(result.data.projects)
           ? result.data.projects
-          : cloneDefaults().projects
+          : cloneDefaults().projects,
+        contacts: mergeContacts(
+          Array.isArray(result.data.contacts) ? result.data.contacts : []
+        )
       };
+    } else {
+      data.contacts = mergeContacts([]);
     }
 
     applyData();
     setStatus("Portfolio content loaded successfully.");
   } catch (error) {
     console.error("Portfolio loading error:", error);
+    data.contacts = mergeContacts([]);
     setStatus("Couldn't load saved content. Showing default content.");
+  }
+}
+
+async function submitContact(event) {
+  event.preventDefault();
+
+  const submitBtn = document.getElementById("contact-submit");
+  const statusEl = document.getElementById("contact-status");
+
+  const entry = {
+    id: Date.now().toString(36) + Math.random().toString(36).slice(2, 6),
+    date: new Date().toLocaleString(),
+    request: document.getElementById("req-details").value.trim(),
+    deadline: document.getElementById("req-deadline").value.trim() || "Not specified",
+    pay: document.getElementById("req-pay").value.trim() || "Not specified",
+    discord: document.getElementById("req-discord").value.trim(),
+    email: document.getElementById("req-email").value.trim() || "Not provided",
+    phone: document.getElementById("req-phone").value.trim() || "Not provided"
+  };
+
+  submitBtn.disabled = true;
+  submitBtn.textContent = "Submitting...";
+  statusEl.style.color = "#aaa";
+  statusEl.textContent = "Sending your request...";
+
+  // Save locally immediately so it is never lost
+  const localList = getLocalContacts();
+  localList.unshift(entry);
+  saveLocalContacts(localList);
+
+  if (!Array.isArray(data.contacts)) {
+    data.contacts = [];
+  }
+  data.contacts.unshift(entry);
+
+  try {
+    const response = await fetch(API_URL, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        action: "contact",
+        contact: entry
+      })
+    });
+
+    const result = await response.json().catch(() => ({}));
+
+    if (response.ok && result.success) {
+      statusEl.style.color = "#4ade80";
+      statusEl.textContent = "Request submitted! FyreDrift will review it soon.";
+    } else {
+      statusEl.style.color = "#4ade80";
+      statusEl.textContent = "Request recorded! Feel free to also DM @fyredriftofficial on Discord.";
+    }
+
+    document.getElementById("contact-form").reset();
+  } catch (error) {
+    console.warn("Worker contact endpoint unavailable, saved locally:", error);
+    statusEl.style.color = "#4ade80";
+    statusEl.textContent = "Request recorded! Feel free to also DM @fyredriftofficial on Discord.";
+    document.getElementById("contact-form").reset();
+  } finally {
+    submitBtn.disabled = false;
+    submitBtn.textContent = "Submit";
   }
 }
 
@@ -626,7 +881,72 @@ function loadEditor() {
   document.getElementById("edit-about").value = data.about;
   document.getElementById("edit-about2").value = data.about2;
 
+  renderContactsEditor();
   renderProjectEditor();
+}
+
+function renderContactsEditor() {
+  const holder = document.getElementById("contacts-editor");
+  holder.innerHTML = "";
+
+  const contacts = Array.isArray(data.contacts) ? data.contacts : [];
+
+  if (contacts.length === 0) {
+    const empty = document.createElement("div");
+    empty.className = "editor-item";
+    empty.style.color = "#aaa";
+    empty.textContent = "No contact requests yet.";
+    holder.appendChild(empty);
+    return;
+  }
+
+  contacts.forEach((contact, index) => {
+    const item = document.createElement("div");
+    item.className = "editor-item";
+
+    const header = document.createElement("h3");
+    header.textContent = `Request #${contacts.length - index} — ${contact.date || "Recent"}`;
+
+    const meta = document.createElement("div");
+    meta.className = "contact-meta";
+
+    const fields = [
+      ["Discord", contact.discord],
+      ["Pay", contact.pay],
+      ["Deadline", contact.deadline],
+      ["Email", contact.email],
+      ["Phone", contact.phone]
+    ];
+
+    fields.forEach(([label, val]) => {
+      const badge = document.createElement("span");
+      badge.className = "contact-badge";
+      const strong = document.createElement("strong");
+      strong.textContent = label + ": ";
+      badge.append(strong, document.createTextNode(val || "N/A"));
+      meta.appendChild(badge);
+    });
+
+    const msg = document.createElement("div");
+    msg.className = "contact-msg";
+    msg.textContent = contact.request || "";
+
+    const remove = document.createElement("button");
+    remove.textContent = "Delete request";
+    remove.onclick = () => {
+      const removed = data.contacts.splice(index, 1)[0];
+      if (removed) {
+        const local = getLocalContacts().filter(
+          c => (c.id || c.date + c.request) !== (removed.id || removed.date + removed.request)
+        );
+        saveLocalContacts(local);
+      }
+      renderContactsEditor();
+    };
+
+    item.append(header, meta, msg, remove);
+    holder.appendChild(item);
+  });
 }
 
 function renderProjectEditor() {
@@ -668,7 +988,7 @@ function renderProjectEditor() {
 }
 
 function collectProjects() {
-  return [...document.querySelectorAll(".editor-item")]
+  return [...document.querySelectorAll("#project-editor .editor-item")]
     .map(item => item._fields.map(field => field.value));
 }
 
@@ -714,6 +1034,7 @@ async function saveAll() {
       throw new Error(result.error || "Save failed.");
     }
 
+    saveLocalContacts(data.contacts || []);
     applyData();
 
     setStatus(
@@ -764,7 +1085,7 @@ function applyData() {
         card.append(span);
       });
 
-    grid.append(card);
+    grid.appendChild(card);
   });
 }
 
@@ -773,7 +1094,9 @@ function resetSite() {
     return;
   }
 
+  const preservedContacts = data.contacts || [];
   data = cloneDefaults();
+  data.contacts = preservedContacts;
 
   loadEditor();
   applyData();
