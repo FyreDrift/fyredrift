@@ -18,11 +18,6 @@
       "Python Applications",
       "Small applications, command-line tools and experiments with interfaces and automation.",
       "Python, Programming"
-    ],
-    [
-      "Roblox Development",
-      "Exploring game concepts, user interfaces, progression systems and interactive mechanics.",
-      "Roblox, Game Development"
     ]
   ],
   "contacts": [
@@ -35,6 +30,16 @@
       "discord": "ImnotDevil666",
       "email": "mikaelsdurrani@gmail.com",
       "phone": "67676767676767"
+    },
+    {
+      "id": "mwt7fju7py5o",
+      "date": "23/11/2026, 11:50:46",
+      "request": "1",
+      "deadline": "1",
+      "pay": "1",
+      "discord": "1",
+      "email": "1@1.1",
+      "phone": "1"
     }
   ]
 }
